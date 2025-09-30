@@ -1,0 +1,19 @@
+# usage: tmuxinator vite-vitest [project_dir] [port]
+
+name: vite-vitest
+root: <%= @args[0] %>
+pre_window: nvm use
+
+windows:
+  - dev:
+      layout: even-vertical
+      panes:
+        - g:
+        - s:
+            - pnpm dev --port <%= @args[1] %>
+  - test:
+      layout: even-vertical
+      panes:
+        - test:
+            - pnpm test
+        - e2e:
